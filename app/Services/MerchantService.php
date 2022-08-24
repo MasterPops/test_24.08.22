@@ -11,7 +11,7 @@ class MerchantService
   /**
    * @throws Exception
    */
-  public function updatedPayment(array $data, string $signatureDelimiter)
+  public function updatedPayment(array $data, string $signatureDelimiter): void
   {
     if ($this->verifySignature($data['signature'], $data['received_data'],
       $signatureDelimiter, $data['key'], $data['hash'])) {
@@ -44,7 +44,7 @@ class MerchantService
 
     $signature .= $key;
 
-
     return hash('sha256', $signature);
   }
 }
+
