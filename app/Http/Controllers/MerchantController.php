@@ -17,7 +17,7 @@ class MerchantController extends Controller
   {
     $receivedData = json_decode($request->getContent(), true);
 
-    $signature = $request->$receivedData['sign'];
+    $signature = $receivedData['sign'];
     $receivedData = Arr::except($receivedData, ['sign']);
 
     $merchantModel = Merchant::whereExternalId($receivedData['merchant_id'])->firstOrFail();

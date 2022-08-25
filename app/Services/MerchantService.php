@@ -36,15 +36,22 @@ class MerchantService
   public function generateSignature(array $data, string $delimiter, string $key, string $hash): string
   {
     $signature = '';
-    $data = Arr::sort($data);
 
+    ksort($data);
+
+    $start = true;
     foreach ($data as $field) {
-      $signature .= $field . $delimiter;
+      if (!$start) {
+        $signature .= $delimiter;
+      }
+      $start = false;
+
+      $signature .= $field;
     }
 
     $signature .= $key;
 
-    return hash('sha256', $signature);
+    return hash($hash, $signature);
   }
 }
 

@@ -13,7 +13,7 @@ class MerchantTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
       $merchant = new Merchant();
       $merchant->external_id = 6;
