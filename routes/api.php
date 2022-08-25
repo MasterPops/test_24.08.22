@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group([
+  'prefix' => '/payments',
+], function () {
+  Route::post('/merchant_1', [MerchantController::class, 'merchantOne']);
+  Route::post('/merchant_2', [MerchantController::class, 'merchantTwo']);
+});
